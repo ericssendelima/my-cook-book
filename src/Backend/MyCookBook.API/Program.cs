@@ -2,6 +2,8 @@ using MyCookBook.API.Filters;
 using MyCookBook.API.Middlewares;
 using MyCookBook.Application;
 using MyCookBook.Infrastructure;
+using MyCookBook.Infrastructure.Extensions;
+using MyCookBook.Infrastructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,4 +37,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+MigrateDatabase();
+
 app.Run();
+
+void MigrateDatabase()
+{
+  var connectionString = builder.Configuration.ConnectionString();
+
+  DatabaseMigration.Migrate(connectionString);
+}

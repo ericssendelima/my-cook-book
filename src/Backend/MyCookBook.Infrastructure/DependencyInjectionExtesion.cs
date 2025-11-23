@@ -5,6 +5,7 @@ using MyCookBook.Domain.Repositories;
 using MyCookBook.Domain.Repositories.User;
 using MyCookBook.Infrastructure.DataAccess;
 using MyCookBook.Infrastructure.DataAccess.Repositories;
+using MyCookBook.Infrastructure.Extensions;
 
 namespace MyCookBook.Infrastructure
 {
@@ -26,7 +27,7 @@ namespace MyCookBook.Infrastructure
     {
       services.AddDbContext<MyCookBookDbContext>(dbContextOptions =>
       {
-        dbContextOptions.UseSqlServer(configuration.GetConnectionString("connection"));
+        dbContextOptions.UseSqlServer(configuration.ConnectionString());
       });
     }
   }
