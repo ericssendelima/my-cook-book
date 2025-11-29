@@ -8,5 +8,6 @@ namespace MyCookBook.Infrastructure.Extensions
     {
       return configuration.GetConnectionString("connection")!;
     }
+    public static bool IsUnitTestEnvironment(this IConfiguration configuration) => configuration.GetValue<bool>("InMemoryTest");
   }
 }

@@ -16,6 +16,9 @@ namespace MyCookBook.Infrastructure
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
       AddRepositories(services);
+
+      if (configuration.IsUnitTestEnvironment()) return;
+
       AddDbContext_SqlServer(services, configuration);
       AddFluentMigrator_SqlServer(services, configuration);
     }
